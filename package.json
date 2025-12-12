@@ -1,0 +1,68 @@
+{
+  "name": "node-server-starter",
+  "type": "commonjs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "author": "Eiog",
+  "license": "MIT",
+  "homepage": "https://github.com/Eiog/node-server-starter",
+  "main": "src/app.ts",
+  "scripts": {
+    "dev": "tsx watch src/node.ts",
+    "dev:h3": "tsx watch src/h3.ts",
+    "dev:express": "tsx watch src/express.ts",
+    "dev:ws": "tsx watch src/ws.ts",
+    "dev:vercel": "tsx watch scripts/vercel.dev.ts",
+    "build": "rimraf dist && tsc --noEmit && tsup",
+    "start": "node dist/node.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "update:deps": "taze -w && pnpm i",
+    "type:check": "tsc --noEmit",
+    "cz": "czg",
+    "commit": "git pull && git add -A && pnpm cz && git push",
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "npx simple-git-hooks"
+  },
+  "dependencies": {
+    "@vue/reactivity": "^3.5.25",
+    "bcrypt": "^6.0.0",
+    "express": "^5.2.1",
+    "h3": "2.0.1-rc.6",
+    "jsonwebtoken": "^9.0.3",
+    "nanoid": "^5.1.6",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^6.6.1",
+    "@eiog/ts-config": "^0.0.3",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^25.0.1",
+    "@types/ws": "^8.18.1",
+    "chalk": "^5.6.2",
+    "commitlint": "^20.2.0",
+    "consola": "^3.4.2",
+    "cz-git": "^1.12.0",
+    "czg": "^1.12.0",
+    "eslint": "^9.39.1",
+    "lint-staged": "^16.2.7",
+    "listhen": "^1.9.0",
+    "simple-git-hooks": "^2.13.1",
+    "taze": "^19.9.2",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vercel": "^50.0.0",
+    "vitest": "^4.0.15"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged && pnpm type:check"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "pnpm lint:fix"
+    ]
+  }
+}
